@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
@@ -386,7 +385,7 @@ class StoryView extends StatefulWidget {
   /// want to listen to such event, do not provide it. For instance,
   /// for inline stories inside ListViews, it is preferrable to not to
   /// provide this callback so as to enable scroll events on the list view.
-  final Function(Direction?)? onVerticalSwipeComplete;
+  final Function(Direction?, int)? onVerticalSwipeComplete;
 
   /// Callback for when a story is currently being shown.
   final ValueChanged<StoryItem>? onStoryShow;
@@ -411,6 +410,7 @@ class StoryView extends StatefulWidget {
   final Color? indicatorForegroundColor;
 
   StoryView({
+    Key? key,
     required this.storyItems,
     required this.controller,
     this.onComplete,
@@ -421,7 +421,7 @@ class StoryView extends StatefulWidget {
     this.onVerticalSwipeComplete,
     this.indicatorColor,
     this.indicatorForegroundColor,
-  });
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -702,7 +702,9 @@ class StoryViewState extends State<StoryView> with TickerProviderStateMixin {
                         if (!verticalDragInfo!.cancel &&
                             widget.onVerticalSwipeComplete != null) {
                           widget.onVerticalSwipeComplete!(
-                              verticalDragInfo!.direction);
+                              verticalDragInfo!.direction,
+                              widget.storyItems.indexOf(this._currentStory ??
+                                  widget.storyItems.last));
                         }
 
                         verticalDragInfo = null;
@@ -827,11 +829,11 @@ class StoryProgressIndicator extends StatelessWidget {
         this.indicatorHeight,
       ),
       foregroundPainter: IndicatorOval(
-        this.indicatorForegroundColor?? Colors.white.withOpacity(0.8),
+        this.indicatorForegroundColor ?? Colors.white.withOpacity(0.8),
         this.value,
       ),
       painter: IndicatorOval(
-        this.indicatorColor?? Colors.white.withOpacity(0.4),
+        this.indicatorColor ?? Colors.white.withOpacity(0.4),
         1.0,
       ),
     );
