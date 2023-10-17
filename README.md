@@ -9,11 +9,6 @@ Story view for apps with stories.
   <img src="https://i.ibb.co/NrLSbZv/Screenshot-1584263018.png" width=400 />
 </p>
 
-👨‍🚀 Demo project here: [storyexample](https://github.com/blackmann/storyexample.git)
-
-🍟 Watch video demo here: [story_view demo](https://youtu.be/yHAVCsWEKQE)
-[![Youtube](https://img.youtube.com/vi/yHAVCsWEKQE/maxresdefault.jpg)](https://youtu.be/yHAVCsWEKQE)
-
 This a Flutter widget to display stories just like Whatsapp and Instagram. Can also be used
 inline/inside ListView or Column just like Google News app. Comes with gestures
 to pause, forward and go to previous page.
@@ -32,7 +27,7 @@ And useful callback to perform meta functionalities including vertical swipe ges
 
 # Installation
 
-To use this plugin, add `story_view` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+To use this plugin, add `story_view` as a dependency in your pubspec.yaml file.
 
 # Usage
 
@@ -42,8 +37,6 @@ Import the package into your code
 import "package:story_view/story_view.dart";
 ```
 
-Look inside `examples/example.dart` on how to use this library. You can copy
-and paste the code into your `main.dart` and run to have a quick look.
 
 ## Basics
 
