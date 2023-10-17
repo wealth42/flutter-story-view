@@ -385,7 +385,7 @@ class StoryView extends StatefulWidget {
   /// want to listen to such event, do not provide it. For instance,
   /// for inline stories inside ListViews, it is preferrable to not to
   /// provide this callback so as to enable scroll events on the list view.
-  final Function(Direction?)? onVerticalSwipeComplete;
+  final Function(Direction?, int)? onVerticalSwipeComplete;
 
   /// Callback for when a story is currently being shown.
   final ValueChanged<StoryItem>? onStoryShow;
@@ -702,7 +702,9 @@ class StoryViewState extends State<StoryView> with TickerProviderStateMixin {
                         if (!verticalDragInfo!.cancel &&
                             widget.onVerticalSwipeComplete != null) {
                           widget.onVerticalSwipeComplete!(
-                              verticalDragInfo!.direction);
+                              verticalDragInfo!.direction,
+                              widget.storyItems.indexOf(this._currentStory ??
+                                  widget.storyItems.last));
                         }
 
                         verticalDragInfo = null;
