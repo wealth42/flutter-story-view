@@ -410,6 +410,7 @@ class StoryView extends StatefulWidget {
   final Color? indicatorForegroundColor;
 
   StoryView({
+    Key? key,
     required this.storyItems,
     required this.controller,
     this.onComplete,
@@ -420,7 +421,7 @@ class StoryView extends StatefulWidget {
     this.onVerticalSwipeComplete,
     this.indicatorColor,
     this.indicatorForegroundColor,
-  });
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
